@@ -2,10 +2,10 @@
 Project euler 56
 
 [Problem description](https://projecteuler.net/problem=56)
-
+Brute force
 ### Solution
-* Brute force ~ 15ms (4threads windows (8 core i7 4770k)
-* ~ 15ms (4threads linux (2 core vm))
+* ~ 15ms (4threads windows (8 core i7 4770k)
+* ~ 15ms (4threads linux (2 core vm) -mtune=native -march=native -O3)
 
 ### Compilers
 
