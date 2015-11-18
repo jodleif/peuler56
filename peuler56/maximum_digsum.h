@@ -5,7 +5,7 @@ namespace peuler56 {
 
 	int digital_sum(const uint1024_t& num);
 	int digital_sum2(const uint1024_t& num);
-	uint1024_t iexp(uint_fast32_t x, unsigned n);
+	uint1024_t iexp(uint_fast32_t x, uint_fast32_t n);
 	int max_digital_sum();
 	int max_digital_sum(uint_fast32_t from, uint_fast32_t to);
 	int threaded_max_digital_sum();

@@ -4,6 +4,8 @@
 #include <thread>
 #include <algorithm>
 
+using boost::multiprecision::uint1024_t;
+
 int peuler56::digital_sum(const uint1024_t& num)
 {
 	auto num_str = num.convert_to<std::string>();
@@ -17,24 +19,24 @@ int peuler56::digital_sum(const uint1024_t& num)
 
 int peuler56::digital_sum2(const uint1024_t& num)
 {
-	auto workset{ num };
+	uint1024_t workset{ num };
 	int sum{ 0 };
-	while(workset!=0) {
-		sum += static_cast<int>(workset % 10);
-		workset /= 10;
+	while(workset!=0u) {
+		sum += static_cast<int>(workset % 10u);
+		workset = workset/10u;
 	}
 	return sum;
 }
 
 
 // Hackers delight p288
-boost::multiprecision::uint1024_t peuler56::iexp(uint_fast32_t base, unsigned n)
+boost::multiprecision::uint1024_t peuler56::iexp(uint_fast32_t base, uint_fast32_t n)
 {
 	auto res = uint1024_t{ 1u };
 	auto x = uint1024_t{ base };
 	while(1) {
-		if (n & 1) res = x * res;
-		n = n >> 1; // Shift exponent
+		if (n & 1u) res = x * res;
+		n = n >> 1u; // Shift exponent
 		if (n == 0) return res;
 		x = x*x;
 	}
@@ -50,7 +52,7 @@ int peuler56::max_digital_sum(uint_fast32_t from, uint_fast32_t to)
 
 	int temp_max{ 0 };
 	for (uint_fast32_t a = from; a < to;++a) {
-		for (unsigned n = from; n < to;++n) {
+		for (uint_fast32_t n = from; n < to;++n) {
 			auto res = iexp(a, n);
 			auto new_sum = digital_sum2(res);
 			if (new_sum > temp_max) temp_max = new_sum;
