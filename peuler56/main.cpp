@@ -11,16 +11,17 @@
 
 #include <iostream>
 #include "maximum_digsum.h"
+#include "timer/bench_timer.h"
 
 int main()
 {
 	std::cout << "Project euler 56 - \n";
 #ifdef _DEBUG
-	peuler55::test::all_tests();
+	peuler56::test::all_tests();
 	std::cout << "Tests ok!\n";
 	std::cin.get();
 #endif
-	std::cout << "Max digital sum is: " << peuler55::max_digital_sum() << "\n";
-	std::cin.get();
+	bench_timer bt;
+	std::cout << "Max digital sum is: " << peuler56::threaded_max_digital_sum() << "\n";
 	return 0;
 }
