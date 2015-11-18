@@ -5,7 +5,7 @@
 #include <algorithm>
 
 using boost::multiprecision::uint1024_t;
-
+// Way faster on linux (~50-60ms -> ~10-18ms)
 int peuler56::digital_sum(const uint1024_t& num)
 {
 	auto num_str = num.convert_to<std::string>();
@@ -16,7 +16,7 @@ int peuler56::digital_sum(const uint1024_t& num)
 	}
 	return digital_sum;
 }
-
+// Faster on windows -> ~15ms with pgo
 int peuler56::digital_sum2(const uint1024_t& num)
 {
 	uint1024_t workset{ num };
@@ -54,7 +54,7 @@ int peuler56::max_digital_sum(uint_fast32_t from, uint_fast32_t to)
 	for (uint_fast32_t a = from; a < to;++a) {
 		for (uint_fast32_t n = from; n < to;++n) {
 			auto res = iexp(a, n);
-			auto new_sum = digital_sum2(res);
+			auto new_sum = digital_sum(res);
 			if (new_sum > temp_max) temp_max = new_sum;
 		}
 	}
